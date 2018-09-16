@@ -1,0 +1,2 @@
+class Workload < ApplicationRecord
+end
