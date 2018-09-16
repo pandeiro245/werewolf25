@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2018_09_16_173141) do
 
   create_table "workloads", force: :cascade do |t|
     t.integer "user_id"
-    t.boolean "is_done"
+    t.boolean "done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_workloads_on_user_id"
