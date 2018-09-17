@@ -17,6 +17,8 @@ class WorkloadsController < ApplicationController
   def create
     room = Room.last
     @workload = Workload.create!(user_id: cookies[:user_id], room: room)
+    role = Role.find_by(name: 'citizen')
+    Member.create(user_id: cookies[:user_id], room: room, role: role)
     redirect_to edit_workload_path(@workload)
   end
 
