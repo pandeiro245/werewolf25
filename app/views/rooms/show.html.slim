@@ -1,4 +1,20 @@
-div good job!
+h3 your role
+
+= @role.name
+
+h3 members
+- @room.members.each do |member|
+  - if member.role.name == 'gm'
+    = "#{member.user.name}(game master)　"
+  - else
+    = "#{member.user.name}　"
+
+h3 roles
+- Role.all.each do |role|
+  = "#{role.name}: #{Member.where(room_id: params[:id], role: role).count}"
+  br
+
+hr
 
 = form_with(model: @comment, local: true, url: '/comments') do |form|
   = form.text_field :body
