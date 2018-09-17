@@ -1,7 +1,6 @@
 class WelcomeController < ApplicationController
   def index
     redirect_to new_workload_path if cookies[:user_id].present?
-    @workload = Workload.new
   end
 
   def callback

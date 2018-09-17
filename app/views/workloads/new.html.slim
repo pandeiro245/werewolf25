@@ -1,4 +1,4 @@
 h1 Die or Focus
 
-= form_with(model: @workload, local: true, action: '/workloads') do |form|
+= form_with(model: @workload, local: true, url: '/workloads') do |form|
   = form.submit 'start to focus in 25minutes!'
