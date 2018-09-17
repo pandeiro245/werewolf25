@@ -11,6 +11,7 @@ div#remain=show_time(@workload)
         location.reload();
       } else {
         dom.innerHTML = disp(remain);
+        document.title = disp(remain);
         setTimeout("count()", 1000)
       }
     }
