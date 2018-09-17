@@ -1,8 +1,17 @@
 class Workload < ApplicationRecord
   belongs_to :room
-  def remain
-    # total = 0.1
-    total = 25
+
+  POMOTIME = 25
+  # POMOTIME = 0.1
+
+  CHATTIME = 5
+  # CHATTIME = 0.1
+
+  def can_chat?
+    remain(POMOTIME + CHATTIME) > 0
+  end
+
+  def remain(total = POMOTIME)
     (total * 60 - (Time.now - created_at)).to_i
   end
 

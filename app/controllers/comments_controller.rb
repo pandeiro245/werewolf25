@@ -2,8 +2,8 @@ class CommentsController < ApplicationController
   def create
     room = Room.last # TODO
     @comment = Comment.new(comment_params)
-    @comment.user_id = cookies[:user_id]
-    @comment.room_id = room.id
+    @comment.user = current_user
+    @comment.room = room
     @comment.save
     redirect_to room_path(room)
   end
