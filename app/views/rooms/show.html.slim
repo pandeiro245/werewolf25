@@ -1,1 +1,9 @@
-div i
+div good job!
+
+= form_with(model: @comment, local: true, url: '/comments') do |form|
+  = form.text_field :body
+  = form.submit 'post'
+
+- @comments.each do |comment|
+  h3=comment.user.name
+  p=comment.body
