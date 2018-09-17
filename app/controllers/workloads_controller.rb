@@ -16,7 +16,7 @@ class WorkloadsController < ApplicationController
   # POST /workloads
   def create
     room = Room.last
-    params = {user_id: cookies[:user_id], room: room}
+    params = {user_id: current_user.id, room: room}
     @workload = Workload.create!(params)
     m = Member.find_or_create_by(params)
     if m.role.blank?
