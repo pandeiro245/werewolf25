@@ -3,7 +3,7 @@ class WorkloadsController < ApplicationController
 
   # GET /workloads/1/edit
   def edit
-    if @workload.remain < 0
+    if @workload.remain <= 0
       @workload.done = true
       @workload.save!
     end

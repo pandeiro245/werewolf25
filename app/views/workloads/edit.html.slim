@@ -1,5 +1,30 @@
-div=show_time(@workload)
+div#remain=show_time(@workload)
 
 - if @workload.remain > 0
   javascript:
-    setTimeout("location.reload()", 1000)
+    var goal = #{@workload.created_at.to_i} + 25 * 60;
+    var dom = document.getElementById("remain");
+
+    function count(){
+      var remain = parseInt(goal - new Date().getTime() / 1000);
+      if(remain <= 0){
+        location.reload();
+      } else {
+        dom.innerHTML = disp(remain);
+        setTimeout("count()", 1000)
+      }
+    }
+
+    function disp(total){
+      var min = parseInt(total / 60);
+      var sec = total - min * 60;
+      if(min < 10){
+        min = '0' + min;
+      }
+      if(sec < 10){
+        sec = '0' + sec;
+      }
+      return min + ':' + sec;
+    }
+
+    count();
