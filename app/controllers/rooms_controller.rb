@@ -1,6 +1,5 @@
 class RoomsController < ApplicationController
   def show
-    redirect_to :root if current_user.blank?
     @room = Room.find(params[:id])
     @member = @room.member(current_user)
     @workload = Workload.where(user_id: current_user.id, done: true).last

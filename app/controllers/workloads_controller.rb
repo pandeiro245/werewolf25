@@ -1,7 +1,6 @@
 class WorkloadsController < ApplicationController
   before_action :set_workload, only: [:edit]
 
-  # GET /workloads/1/edit
   def edit
     if @workload.remain <= 0
       @workload.done = true
