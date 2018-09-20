@@ -1,0 +1,27 @@
+= render partial: 'shared/countdown', locals: {utime: @workload.created_at.to_i + (Workload::POMOTIME + Workload::CHATTIME) * 60}
+
+h3 your role
+
+= @member.role.name
+
+h3 members
+- @room.members.each do |member|
+  - if member.role.name == 'gm'
+    = "#{member.user.name}(game master)　"
+  - else
+    = "#{member.user.name}　"
+
+h3 roles
+- Role.all.each do |role|
+  = "#{role.name}: #{Member.where(room_id: params[:id], role: role).count}"
+  br
+
+hr
+
+= form_with(model: @comment, local: true, url: '/comments') do |form|
+  = form.text_field :body
+  = form.submit 'post'
+
+- @comments.each do |comment|
+  h3=comment.user.name
+  p=comment.body

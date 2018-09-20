@@ -1,0 +1,29 @@
+div#remain now loading...
+javascript:
+  var goal = #{utime};
+  var dom = document.getElementById("remain");
+
+  function count(){
+    var remain = parseInt(goal - new Date().getTime() / 1000);
+    if(remain <= 0){
+      location.reload();
+    } else {
+      dom.innerHTML = disp(remain);
+      document.title = disp(remain);
+      setTimeout("count()", 1000)
+    }
+  }
+
+  function disp(total){
+    var min = parseInt(total / 60);
+    var sec = total - min * 60;
+    if(min < 10){
+      min = '0' + min;
+    }
+    if(sec < 10){
+      sec = '0' + sec;
+    }
+    return min + ':' + sec;
+  }
+
+  count();
