@@ -1,4 +1,13 @@
 class User < ApplicationRecord
+  def workload
+    Workload.where(user_id: self.id).order('id desc').first
+  end
+
+  def working?
+    return false if workload.blank?
+    workload.working?
+  end
+
   def self.generate(num=20)
     1.upto(num).each do |i|
       User.create!({name: "name#{i}"})

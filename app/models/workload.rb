@@ -2,10 +2,11 @@ class Workload < ApplicationRecord
   belongs_to :room
 
   POMOTIME = 25
-  # POMOTIME = 0.1
-
   CHATTIME = 5
-  # CHATTIME = 0.1
+
+  def working?
+    remain(POMOTIME) > 0
+  end
 
   def can_chat?
     remain(POMOTIME + CHATTIME) > 0
